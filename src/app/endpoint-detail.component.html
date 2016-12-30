@@ -1,0 +1,24 @@
+<div class="endpoint">
+  <h1>{{url}}</h1>
+  <div class="content">
+    <div class="loading" *ngIf="isLoading">
+      <span class="loader"><span class="loader-inner"></span></span>
+      <p>Loading...</p>
+    </div>
+    <div class="success" *ngIf="!isLoading && !isError">
+      <div>Commit #<strong>{{git.commit.id | maxLength}}</strong> on branch <strong>{{git.branch}}</strong></div>
+      <div>{{git.commit.message.full}} by {{git.commit.user.name}}</div>
+      <div>{{build.artifact}} {{build.version}}</div>
+      <div>{{build.group}}</div>
+      <div>Build on {{build.time | date:'d MMM y HH:mm:ss' }}</div>
+      <div>{{metrics.heap_used}} / {{metrics.heap}}</div>
+      <div>{{metrics.instance_uptime}}</div>
+      <div>
+        <button class="btn btn-default" (click)="update()">Update</button>
+      </div>
+    </div>
+    <div class="error" *ngIf="isError">
+      <p>Endpoint cannot be reach.</p>
+    </div>
+  </div>
+</div>
