@@ -1,8 +1,59 @@
 # dd
 This project is a simple Angular 2 dashboard that use Spring Actuator REST API to monitor build status of Springboot application
 
+# Maven Build configuration for Actuator
 
-# Untitled
+Srping Actuator needs 2 files to provide interesting informations about build to ddashboard.
+
+First, you should configure your spring application build to generate the *git.properties* file and the maven build properties file.
+
+To generate the *git.properties* file via Maven, you can add this dependency to your *pom.xml*
+
+    <build>
+      <plugins>
+          <!-- Generate a git.properties file to provide build information for actuator -->
+            <plugin>
+              <groupId>pl.project13.maven</groupId>
+              <artifactId>_git-commit-id-plugin</artifactId>
+            </plugin>
+      </plugins>
+    </build>
+	
+To generate maven build properties file, you can add this dependency to your pom.xml
+
+    <build>
+      <plugins>
+        <!-- Generate a file to provide build information for actuator -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>build-info</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+    
+# actuator configuration
+
+ddashboard use CORS Http requests to access Actuator API so we need to allow Spring to allow such requests
+
+Add this configuration to the application.properties of yout springboot project
+
+    # allow health endpoint to display dblink status and free disk space
+    endpoints.health.sensitive=false
+    endpoints.cors.allowed-origins=*
+    endpoints.cors.allowed-methods=GET,POST
+    # allow the info endpoint to display author of commit, date, etc...
+    management.info.git.mode=full
+
+# ddashboard
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
 
 ## Development server
