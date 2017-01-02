@@ -8,7 +8,7 @@ import 'rxjs/Rx';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'dd';
+  title = 'DDashboard';
   endpointsInput:string = `http://localhost:8080/supervision
 http://dev1/supervision
 http://dev2/supervision
