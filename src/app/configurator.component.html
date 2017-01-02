@@ -1,0 +1,7 @@
+<textarea  [(ngModel)]="endpointsInput" spellcheck="false" rows="6" style="width:90%">
+http://localhost:8080/supervision/info
+http://dev1/supervision/info
+http://dev4/supervision/info
+</textarea>
+<div><button class="btn btn-default" (click)="updateEndpoints()">Update endpoints</button></div>
+<p>{{endpointsInput}}</p>
