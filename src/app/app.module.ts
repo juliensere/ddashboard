@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { EndpointDetailComponent } from './endpoint-detail.component'
 import { MaxLengthPipe } from "./maxLengthPipe"
 import { DurationPipe } from "./durationPipe"
+import {FormatSizePipe} from "./formatSizePipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     EndpointDetailComponent,
     MaxLengthPipe,
-    DurationPipe
+    DurationPipe,
+    FormatSizePipe
   ],
   imports: [
     BrowserModule,

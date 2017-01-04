@@ -43,11 +43,11 @@
           </div>
           <div class="item">
             <h2>Metrics</h2>
-            <div>{{metrics["heap.used"]}} / {{metrics.heap}}</div>
-            <div>{{metrics.instance_uptime}}</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
+            <div>Heap : {{metrics["heap.used"] | formatSize}} / {{metrics.heap | formatSize}}</div>
+            <div>{{metrics['instance.uptime'] | duration}}</div>
+            <div>Threads : {{metrics['threads']}} (peak: {{metrics['threads.peak']}})&nbsp;</div>
+            <div>GC Copy : {{metrics['gc.copy.time']}} ms</div>
+            <div>GC Mark&Sweep : {{metrics['gc.marksweepcompact.time']}} ms&nbsp;</div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>

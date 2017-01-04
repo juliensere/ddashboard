@@ -18,6 +18,10 @@ export class DurationPipe {
     var minutes = Math.floor(val/60000);
     val = val%60000;
     var seconds = Math.floor(val/1000);
+
+    if(days > 0) return days + ' days ago';
+    if(hours > 0) return hours + ' hours ago';
+    if(minutes > 0) return minutes + ' minutes ago';
     return (days? days + ' days ': '') + (hours? hours + ' hours ': '') + (minutes? minutes + ' minutes ': '') + (seconds? seconds + ' seconds ': '')
   }
 }

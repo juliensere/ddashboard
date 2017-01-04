@@ -10,13 +10,12 @@ import {Pipe} from '@angular/core';
   name: 'formatSize'
 })
 export class FormatSizePipe {
-  transform(val, args) {
-    if (val == 0) return '0 Byte';
-    var k = 1000; // or 1024 for binary
-    var dm = 3;
-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    var i = Math.floor(Math.log(val) / Math.log(k));
-    return parseFloat((val / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  transform(bytes, args) {
+    var sizes = ['Ko', 'Mo', 'Go', 'To', 'Po', 'Eo', 'Zo', 'Yo'];
+    if (bytes == 0) return 'n/a';
+    var temp:number = Math.log(bytes) / Math.log(1000);
+    var i = Math.floor(temp);
+    return ((i == 0)? (bytes / Math.pow(1000, i)) : (bytes / Math.pow(1000, i)).toFixed(1)) + ' ' + sizes[i];
   }
 }
 
