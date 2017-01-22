@@ -1,0 +1,41 @@
+<div class="">
+  <h1 style="margin-top: 0; margin-bottom:0;">{{url}}</h1>
+  <div class="content container-fluid">
+    <div class="loading" style="margin-top: 7em" *ngIf="isLoading">
+      <span class="loader"><span class="loader-inner"></span></span>
+      <p>Loading...</p>
+    </div>
+    <div class="success" *ngIf="!isLoading && !isError">
+      <div class="row endpoint-detail">
+
+        <div class="col-xs-12 col-md-4 no-gutter">
+          <h2>Metrics</h2>
+          <div><span>Heap : </span>{{metrics["heap.used"] | formatSize}} / {{metrics.heap | formatSize}}</div>
+          <div>{{metrics['instance.uptime'] | duration}}</div>
+          <div><span>Threads : </span>{{metrics['threads']}} (peak: {{metrics['threads.peak']}})&nbsp;</div>
+          <div><span>GC Copy : </span>{{metrics['gc.copy.time']}} ms</div>
+          <div><span>GC Mark&Sweep : </span>{{metrics['gc.marksweepcompact.time']}} ms&nbsp;</div>
+        </div>
+
+        <div class="col-xs-12 col-md-4 no-gutter" [class.xs-hidden]="isBuildActive">
+          <h2>Build</h2>
+          <div>{{build.artifact}} {{build.version}}</div>
+          <div>{{build.group}}</div>
+          <div><span>Build on </span>{{build.time | date:'d MMM y HH:mm:ss' }}</div>
+        </div>
+
+        <div class="col-xs-12 col-md-4 no-gutter">
+          <h2>Git</h2>
+          <div><span>Commit </span>#<strong>{{git.commit.id | maxLength}}</strong></div>
+          <div><span>on branch </span><strong>{{git.branch}}</strong></div>
+          <div>{{git.commit.message.full}} by {{git.commit.user.name}}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="error" *ngIf="isError">
+      <p>Endpoint cannot be reach.</p>
+    </div>
+  </div>
+</div>

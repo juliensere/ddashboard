@@ -17,9 +17,31 @@
   min-height: 14em;
 }
 
+.endpoint-detail span {
+  font-style: italic;
+}
+
 .btn {
   border-radius: 0;
 }
+
+.btn-primary {
+  background-color:#222;
+  border-color: #222;
+  color:#f60;
+}
+
+.no-gutter {
+  padding-left:0;
+  padding-right:0;
+}
+
+.btn-primary:hover {
+  background-color: #000;
+  border-color: #222;
+  color: #f60;
+}
+
 .btn-default {
   background-color: #222;
   border-color: #222;
@@ -51,7 +73,9 @@ textarea {
   color:#eee;
   background-color: #333;
   font-family: Monospace;
-  width:98%;
+  width:100%;
+  border: 1px solid #333;
+  white-space: pre;
 }
 
 body {
@@ -88,7 +112,10 @@ h1, .h1, h2, .h2, h3, .h3 {
   color:#f00;
 }
 
-
+.modal-header {
+  background-color: #242f3f;
+  border-bottom: 0px;
+}
 
 
 

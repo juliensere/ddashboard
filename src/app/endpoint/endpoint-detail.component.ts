@@ -2,15 +2,15 @@
  * Created by JulienSere on 26/12/2016.
  */
 import { Component, Input } from '@angular/core';
-import { EndpointService } from "./endpoint.service"
+import { EndpointService } from "../endpoint.service"
 import { FormsModule } from '@angular/forms';
 import { Http, Headers } from '@angular/http';
 import { Endpoint } from "./endpoint"
-import { EndpointBuild } from "./Build"
+import { EndpointBuild } from "../Build"
 
 @Component({
   selector: 'endpoint-detail',
-  inputs: ['url'],
+  inputs: ['url', 'isGitActive', 'isBuildActive', 'isMetricsActive'],
   providers: [EndpointService],
   templateUrl: './endpoint-detail.component.html',
 })
@@ -24,6 +24,10 @@ export class EndpointDetailComponent {
   public branch:string = '';
   public url:string = 'http://localhost:8080/supervision';
 
+  public isBuildActive:boolean;
+  public isMetricsActive:boolean;
+  public isGitActive:boolean;
+
   constructor(public endpointService: EndpointService, private http: Http) {
     this.build = new EndpointBuild();
     this.isLoading = false;
@@ -33,8 +37,8 @@ export class EndpointDetailComponent {
   }
 
   ngOnInit(){
-    this.http.get(this.url+'/info').map(res => res.json()).retry(1).subscribe(res => this.receiveInfo(res), (err) => this.errorInfo(err));
-    this.http.get(this.url+'/metrics').map(res => res.json()).retry(1).subscribe(res => this.receiveMetrics(res));
+    this.http.get(this.url+'/info').map(res => res.json()).retry(1).subscribe(res => this.receiveInfo(res), err => this.errorInfo(err));
+    this.http.get(this.url+'/metrics').map(res => res.json()).retry(1).subscribe(res => this.receiveMetrics(res), err => this.errorMetrics(err));
     this.isLoading = true;
   }
 
@@ -65,6 +69,12 @@ export class EndpointDetailComponent {
     console.log(err.error());
     this.isLoading = false;
     this.isError = true;
+  }
+
+  errorMetrics(err:any): void {
+    this.isLoading = false;
+    this.isError = true;
+    console.log(err.error());
   }
 
   formatBytes(bytes:number, decimals) {

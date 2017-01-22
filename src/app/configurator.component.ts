@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
 import { EndpointService } from "./endpoint.service"
 import { FormsModule } from '@angular/forms';
 import { Http, Headers } from '@angular/http';
-import { Endpoint } from "./endpoint"
+import { Endpoint } from "./endpoint/endpoint"
 import { EndpointBuild } from "./Build"
 
 @Component({

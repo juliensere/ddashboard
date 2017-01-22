@@ -12,20 +12,17 @@
   </div>
 </div>
 
-<!--
-<ul>
-  <li *ngFor="let endpointUrl of endpointsUrl">
-    {{endpointUrl}}
-  </li>
-</ul>
--->
-
 <div id="listeEndpoints">
   <div *ngFor="let endpointUrl of endpointsUrl" class="endpoint">
-    <endpoint-detail url="{{endpointUrl}}"></endpoint-detail>
+    <endpoint-detail
+      url="{{endpointUrl}}"
+      isBuildActive="{{isBuildActive}}"
+      isMetricsActive="{{isMetricsActive}}"
+      isGitActive="{{isGitActive}}"
+    >
+    </endpoint-detail>
   </div>
 </div>
-
 
 <div class="modal fade" id="configurator" tabindex="-1" role="dialog" aria-labelledby="configurator">
   <div class="modal-dialog" role="document">
@@ -34,8 +31,24 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Configuration</h4>
       </div>
-      <div class="modal-body">
-
+      <div class="modal-body" style="text-align:left;">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" [(ngModel)]="isGitActive" (change)="updateConfiguration()"> Git
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" [(ngModel)]="isBuildActive" (change)="updateConfiguration()"> Build
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" [(ngModel)]="isMetricsActive" (change)="updateConfiguration()"> Metrics
+          </label>
+        </div>
+        <div class="row">
+        <div class="col-xs-12">
 <textarea  [(ngModel)]="endpointsInput" spellcheck="false" rows="6" style="">
 http://localhost:8080/supervision/info
 http://dev1/supervision/info
@@ -43,9 +56,12 @@ http://dev2/supervision/info
 http://dev3/supervision/info
 http://dev4/supervision/info
 </textarea>
-        <div><button class="btn btn-default" (click)="updateEndpoints()">Update endpoints</button></div>
-        <p>{{endpointsInput}}</p>
-
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-right"><button class="btn btn-default" (click)="updateEndpoints()">Update endpoints</button></div>
+        </div>
+        <p class="hidden">DEBUG : {{endpointsInput}} {{isBuildActive}} {{isMetricsActive}} {{isGitActive}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -16,6 +16,25 @@ http://dvbolwsc02.rouen.francetelecom.fr:9551/orange-jwt`;
 
   ngOnInit() {
     this.updateEndpoints();
+    this.isBuildActive = true;
+    this.isGitActive = true;
+    this.isMetricsActive = true;
+  }
+
+  set isBuildActive(value) {
+    this.updateConfiguration();
+  }
+
+  set isMetricsActive(value) {
+    this.updateConfiguration();
+  }
+
+  set isGitActive(value) {
+    this.updateConfiguration();
+  }
+
+  updateConfiguration():void {
+    console.log("update config");
   }
 
   updateEndpoints():void {

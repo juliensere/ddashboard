@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { EndpointDetailComponent } from './endpoint-detail.component'
+import { EndpointDetailComponent } from './endpoint/endpoint-detail.component'
 import { MaxLengthPipe } from "./maxLengthPipe"
 import { DurationPipe } from "./durationPipe"
 import {FormatSizePipe} from "./formatSizePipe";
